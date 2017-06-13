@@ -1,10 +1,10 @@
 // import angular from 'angular';
 //
-// import check from './check.component';
+// import history from './history.component';
 // import resource from '../../services/services';
 //
 // export default angular
-//   .module('appCheck', [
+//   .module('appHistory', [
 //     resource.name
 //   ])
-//   .component('check', check);
+//   .component('history', history);
