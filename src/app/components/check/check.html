@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row text-center">
+
+        <div class="search">
+          <input placeholder="Wprowadź NIP..." class="search__input" type="text" name="Search" ng-model="vm.tag">
+          <button class="search__reset" type="button" name="reset" ng-click="vm.reset()">reset</button>
+
+          <div class="row text-center">
+            <button class="search__button" type="button" name="button" ng-click="vm.displayResult()">Get</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <p>Nazwa</p>
+            <input class="wrapper__input" type="text" name="name" ng-model="vm.name">
+          </div>
+          <div class="col-md-6 text-center">
+            <p>Ulica</p>
+            <input class="wrapper__input" type="text" name="street" ng-model="vm.street">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 text-center">
+            <p>Nr</p>
+            <input class="wrapper__input" type="text" name="houseNumber" ng-model="vm.houseNumber">
+          </div>
+          <div class="col-md-6 text-center">
+            <p>Kod pocztowy</p>
+            <input class="wrapper__input" type="text" name="postalCode" ng-model="vm.postalCode">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>Miasto</p>
+            <input class="wrapper__input" type="text" name="place" ng-model="vm.place">
+          </div>
+        </div>
+        <div class="row text-center wrapper__error">
+        <p>{{ vm.error }}</p>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-6 text-center">
+      <button type="button" name="addToHistory" ng-click="vm.addToHistory()">Dodaj do histori</button>
+      <button type="button" name="button" ng-click="vm.showHistory()">Pokaż historię</button>
+      <ul ng-if="vm.isVisible">
+        <li ng-repeat="item in vm.listItem track by $index" ng-click="vm.assignHistoryData(item)">{{item.name}}<button type="button" name="removeButton" ng-click="vm.removeItem($index)">X</button></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
