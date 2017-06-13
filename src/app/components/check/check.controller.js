@@ -6,12 +6,8 @@
      this.model = model;
    }
 
-   $onInit() {
-     this.error = "";
-   }
-
-   displayResult() {
-     if (this.model.listItem.length > 0) {
+   showItem() {
+     if (this.model.ls.listItem.length > 0) {
        this.model.setDataFromHistory();
      } else {
        this.model.fetchData();
@@ -26,6 +22,6 @@
      this.model.postalCode = "";
      this.model.place = "";
 
-     this.error = "";
+     this.model.error = "";
    }
  }

@@ -1,11 +1,10 @@
 export default class Model {
-  constructor(resource) {
+
+  constructor(resource, $localStorage) {
     'ngInject';
     this.resource = resource;
-    this.listItem = [];
-  }
-
-  $onInit() {
+    this.ls = $localStorage;
+    this.ls.listItem;
   }
 
   fetchData() {
@@ -19,7 +18,6 @@ export default class Model {
       this.houseNumber = data.CompanyInformation.HouseNumber;
       this.postalCode = data.CompanyInformation.PostalCode;
       this.place = data.CompanyInformation.Place;
-     //  this.saveItem();
     })
     .catch(() => {
        this.error = "Nie znaleziono danych!";
@@ -31,9 +29,16 @@ export default class Model {
     });
   }
 
+  isItemUndefined(data) {
+    for (let key in data) {
+      if (data[key] === undefined) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   addToHistory() {
-    console.log("wchodzi");
-    let key;
     let data = {
       "tag": this.tag,
       "name": this.name,
@@ -42,53 +47,48 @@ export default class Model {
       "postalCode": this.postalCode,
       "place": this.place
     };
-    console.log(data);
-    console.log(this.name);
+
     let last_element;
     let isExisting = true;
-    let isValueUndefined = true;
+    let isUndefined = this.isItemUndefined(data);
 
-    for (key in data) {
-      if (data[key] === undefined) {
-        isValueUndefined = false;
+    if (this.ls.listItem.length > 0) {
+      last_element = this.ls.listItem[this.ls.listItem.length - 1];
+    }
+    console.log(last_element);
+
+    angular.forEach(this.ls.listItem, (element) => {
+      if (element === last_element) {
+        isExisting = false;
       }
+    });
+
+    console.log(isExisting);
+    console.log(isUndefined);
+
+    if (isExisting && isUndefined) {
+      this.ls.listItem.push(data);
     }
-
-    if (this.listItem.length > 0) {
-      last_element = this.listItem[this.listItem.length - 1];
-      console.log(last_element);
-    }
-
-     angular.forEach(this.listItem, (element) => {
-       if (element !== last_element) {
-         isExisting = false;
-       }
-     });
-
-     if (isExisting && isValueUndefined) {
-       this.listItem.push(data);
-     }
-    console.log(this.listItem);
+    console.log(this.ls.listItem);
   }
 
-setDataFromHistory() {
-  let flag = true;
+  setDataFromHistory() {
+    let flag = true;
 
-  angular.forEach(this.listItem, (item) => {
-    if (item.tag === this.tag) {
-      flag = false;
-      this.name = item.name;
-      this.street = item.street;
-      this.houseNumber = item.houseNumber;
-      this.postalCode = item.postalCode;
-      this.place = item.place;
-      console.log("from history");
+    angular.forEach(this.ls.listItem, (item) => {
+      if (item.tag === this.tag) {
+        flag = false;
+        this.name = item.name;
+        this.street = item.street;
+        this.houseNumber = item.houseNumber;
+        this.postalCode = item.postalCode;
+        this.place = item.place;
+        console.log("from history");
+      }
+    });
+    if (flag === true) {
+      this.fetchData();
+      console.log("fecz");
     }
-  });
-  console.log(flag);
-  if (flag === true) {
-    this.fetchData();
-    console.log("fecz");
   }
-}
 }

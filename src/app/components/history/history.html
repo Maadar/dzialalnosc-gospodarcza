@@ -2,6 +2,6 @@
   <button type="button" name="addToHistory" ng-click="vm.model.addToHistory()">Dodaj do histori</button>
   <button type="button" name="button" ng-click="vm.showHistory()">Pokaż historię</button>
   <ul ng-if="vm.isVisible">
-    <li ng-repeat="item in vm.model.listItem track by $index" ng-click="vm.assignHistoryData(item)">{{item.name}}<button type="button" name="removeButton" ng-click="vm.removeItem($index)">X</button></li>
+    <li ng-repeat="item in vm.model.ls.listItem track by $index" ng-click="vm.assignHistoryData(item)">{{item.name}}<button type="button" name="removeButton" ng-click="vm.removeItem($index)">X</button></li>
   </ul>
 </div>

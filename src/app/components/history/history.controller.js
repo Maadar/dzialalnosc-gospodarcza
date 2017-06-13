@@ -9,9 +9,9 @@ export default class History {
   }
 
    removeItem(index) {
-     delete this.model.listItem[index];
+     delete this.model.ls.listItem[index];
 
-     this.model.listItem = this.model.listItem.filter(val => {
+     this.model.ls.listItem = this.model.ls.listItem.filter(val => {
        return val !== undefined;
      });
    }
@@ -25,7 +25,7 @@ export default class History {
      this.model.postalCode = item.postalCode;
      this.model.place = item.place;
 
-     this.error = "";
+     this.model.error = "";
    }
 
    showHistory() {
