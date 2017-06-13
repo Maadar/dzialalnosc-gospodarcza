@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class Model {
 
   constructor(resource, $localStorage) {
@@ -5,6 +6,7 @@ export default class Model {
     this.resource = resource;
     this.ls = $localStorage;
     this.ls.listItem;
+    console.log(this.autoDelete());
   }
 
   fetchData() {
@@ -18,6 +20,7 @@ export default class Model {
       this.houseNumber = data.CompanyInformation.HouseNumber;
       this.postalCode = data.CompanyInformation.PostalCode;
       this.place = data.CompanyInformation.Place;
+      this.timeOf = moment().valueOf();
     })
     .catch(() => {
        this.error = "Nie znaleziono danych!";
@@ -45,7 +48,8 @@ export default class Model {
       "street": this.street,
       "houseNumber": this.houseNumber,
       "postalCode": this.postalCode,
-      "place": this.place
+      "place": this.place,
+      "timeOf": moment().valueOf()
     };
 
     let last_element;
@@ -67,7 +71,7 @@ export default class Model {
   setDataFromHistory() {
     let flag = true;
 
-    angular.forEach(this.ls.listItem, (item) => {
+    angular.forEach(this.ls.listItem, item => {
       if (item.tag === this.tag) {
         flag = false;
         this.name = item.name;
@@ -83,4 +87,22 @@ export default class Model {
       console.log("fecz");
     }
   }
+
+  autoDelete() {
+    for (let key in this.ls.listItem) {
+      if (this.ls.listItem[key].timeOf !== undefined) {
+
+        //86400000 ms = doba
+        if (this.ls.listItem[key].timeOf + 86400000 <= moment().valueOf()) {
+          delete this.ls.listItem[key];
+        }
+      }
+
+      this.ls.listItem = this.ls.listItem.filter(val => {
+        return val !== undefined;
+      });
+      console.log(this.ls.listItem);
+    }
+  }
+
 }

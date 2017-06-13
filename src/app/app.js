@@ -3,7 +3,6 @@ import Components from './components/components';
 import services from './services/services';
 import 'normalize.css';
 import localstorage from 'ngstorage';
-console.log(localstorage);
 import AppComponent from './app.component';
 
 angular.module('app', [

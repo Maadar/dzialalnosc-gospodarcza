@@ -4,10 +4,6 @@ export default class History {
     this.model = model;
   }
 
-  $onInit() {
-    console.log(this.model);
-  }
-
    removeItem(index) {
      delete this.model.ls.listItem[index];
 
