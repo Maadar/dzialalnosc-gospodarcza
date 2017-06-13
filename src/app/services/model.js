@@ -31,7 +31,7 @@ export default class Model {
 
   isItemUndefined(data) {
     for (let key in data) {
-      if (data[key] === undefined) {
+      if (data[key] === undefined || data[key] === "") {
         return false;
       }
     }
@@ -49,24 +49,16 @@ export default class Model {
     };
 
     let last_element;
-    let isExisting = true;
     let isUndefined = this.isItemUndefined(data);
+    let isExist = true;
 
-    if (this.ls.listItem.length > 0) {
-      last_element = this.ls.listItem[this.ls.listItem.length - 1];
-    }
-    console.log(last_element);
-
-    angular.forEach(this.ls.listItem, (element) => {
-      if (element === last_element) {
-        isExisting = false;
+    angular.forEach(this.ls.listItem, item => {
+      if (item.tag == data.tag) {
+        isExist = false;
       }
     });
 
-    console.log(isExisting);
-    console.log(isUndefined);
-
-    if (isExisting && isUndefined) {
+    if (isUndefined && isExist) {
       this.ls.listItem.push(data);
     }
     console.log(this.ls.listItem);
