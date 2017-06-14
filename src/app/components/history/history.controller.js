@@ -13,7 +13,6 @@ export default class History {
    }
 
    assignHistoryData(item) {
-     console.log(item);
      this.model.tag = item.tag;
      this.model.name = item.name;
      this.model.street = item.street;

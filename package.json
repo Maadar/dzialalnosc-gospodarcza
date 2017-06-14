@@ -1,7 +1,7 @@
 {
-  "name": "Gallery",
+  "name": "Recrutiment",
   "version": "0.0.1",
-  "description": "Gallery",
+  "description": "Recrutiment",
   "main": "index.js",
   "dependencies": {
     "angular": "^1.5.0",

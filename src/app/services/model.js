@@ -1,16 +1,18 @@
 import moment from 'moment';
+
 export default class Model {
 
   constructor(resource, $localStorage) {
     'ngInject';
+
     this.resource = resource;
     this.ls = $localStorage;
     this.ls.listItem;
-    console.log(this.autoDelete());
+
+    this.autoDelete();
   }
 
   fetchData() {
-    console.log("from resource");
     this.error = "";
     let resource = this.resource.getResourceData(this.tag);
 
@@ -38,6 +40,7 @@ export default class Model {
         return false;
       }
     }
+
     return true;
   }
 
@@ -65,29 +68,29 @@ export default class Model {
     if (isUndefined && isExist) {
       this.ls.listItem.push(data);
     }
-    console.log(this.ls.listItem);
   }
 
   setDataFromHistory() {
-    let flag = true;
+    let canSet = true;
 
     angular.forEach(this.ls.listItem, item => {
       if (item.tag === this.tag) {
-        flag = false;
+        canSet = false;
         this.name = item.name;
         this.street = item.street;
         this.houseNumber = item.houseNumber;
         this.postalCode = item.postalCode;
         this.place = item.place;
-        console.log("from history");
       }
     });
-    if (flag === true) {
+
+    if (canSet === true) {
       this.fetchData();
-      console.log("fecz");
     }
+
   }
 
+  // object is automaticly removed after 24 hours
   autoDelete() {
     for (let key in this.ls.listItem) {
       //86400000 ms = doba
@@ -98,7 +101,7 @@ export default class Model {
       this.ls.listItem = this.ls.listItem.filter(val => {
         return val !== undefined;
       });
-      console.log(this.ls.listItem);
+
     }
   }
 
