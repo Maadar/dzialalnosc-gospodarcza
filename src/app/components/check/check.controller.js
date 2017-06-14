@@ -7,6 +7,10 @@
    }
 
    showItem() {
+     if (this.model.ls.listItem === undefined) {
+       this.model.ls.listItem = [];
+     }
+
      if (this.model.ls.listItem.length > 0) {
        this.model.setDataFromHistory();
      } else {
