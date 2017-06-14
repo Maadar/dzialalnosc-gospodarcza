@@ -1,47 +1,53 @@
-<div class="row text-center">
-  <div class="search">
-    <input placeholder="Wprowadź NIP..." class="search__input" type="text" name="Search" ng-model="vm.model.tag">
-    <button class="search__reset" type="button" name="reset" ng-click="vm.reset()">reset</button>
-
-    <div class="row text-center">
-      <button class="search__button" type="button" name="button" ng-click="vm.showItem()">Get</button>
-    </div>
-  </div>
-</div>
-
 <div class="wrapper">
-  <div class="row">
-    <div class="col-md-6 text-center">
-      <p>Nazwa</p>
-      <input class="wrapper__input" type="text" name="name" ng-model="vm.model.name">
-    </div>
 
-    <div class="col-md-6 text-center">
-      <p>Ulica</p>
-      <input class="wrapper__input" type="text" name="street" ng-model="vm.model.street">
+  <div class="row">
+    <div class="col-md-12 wrapper__search">
+      <div class="input-group">
+        <input type="text" class="form-control wrapper__search--input" placeholder="Wprowadź numer NIP/REGON/KRS..." ng-model="vm.model.tag">
+        <span class="input-group-btn">
+          <button class="btn btn-default wrapper__search--showButton" type="button" ng-click="vm.showItem()">Get</button>
+        </span>
+        <span class="input-group-btn">
+          <button class="btn btn-default wrapper__search--resetButton" type="button" ng-click="vm.reset()">Reset</button>
+        </span>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 text-center">
-      <p>Nr</p>
-      <input class="wrapper__input" type="text" name="houseNumber" ng-model="vm.model.houseNumber">
+  <div class="wrapper__showItems">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <p class="wrapper__showItems--caption">Nazwa</p>
+        <input class="form-control wrapper__showItems--input" type="text" name="name" ng-model="vm.model.name">
+      </div>
+
+      <div class="col-md-6 text-center">
+        <p class="wrapper__showItems--caption">Ulica</p>
+        <input class="form-control wrapper__showItems--input" type="text" name="street" ng-model="vm.model.street">
+      </div>
     </div>
 
-    <div class="col-md-6 text-center">
-      <p>Kod pocztowy</p>
-      <input class="wrapper__input" type="text" name="postalCode" ng-model="vm.model.postalCode">
-    </div>
-  </div>
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <p class="wrapper__showItems--caption">Nr</p>
+        <input class="form-control wrapper__showItems--input" type="text" name="houseNumber" ng-model="vm.model.houseNumber">
+      </div>
 
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <p>Miasto</p>
-      <input class="wrapper__input" type="text" name="place" ng-model="vm.model.place">
+      <div class="col-md-6 text-center">
+        <p class="wrapper__showItems--caption">Kod pocztowy</p>
+        <input class="form-control wrapper__showItems--input" type="text" name="postalCode" ng-model="vm.model.postalCode">
+      </div>
     </div>
-  </div>
 
-  <div class="row text-center wrapper__error">
-    <p>{{ vm.model.error }}</p>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="wrapper__showItems--caption">Miasto</p>
+        <input class="form-control wrapper__showItems--input" type="text" name="place" ng-model="vm.model.place">
+      </div>
+    </div>
+
+    <div class="row text-center wrapper__showItems--errormsg">
+      <p>{{ vm.model.error }}</p>
+    </div>
   </div>
 </div>

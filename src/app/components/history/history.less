@@ -1,0 +1,56 @@
+.history {
+  padding:30px 0;
+  .history__addToHistory {
+    margin-bottom:10px;
+    background: #a7e232;
+    color:#ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    outline: none;
+    border-radius: 0;
+    transition: 0.3s;
+    &:hover {
+      background: #03d189;
+    }
+  }
+  .history__showHistory {
+    margin-bottom:10px;
+    background: #1B9AF7;
+    color:#ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    outline: none;
+    border-radius: 0;
+    transition: 0.3s;
+    &:hover {
+      background: #0A888E;
+    }
+  }
+
+  .history__listItem {
+    .history__listItem--item {
+      text-align: left;
+      line-height: 30px;
+      height:55px;
+      transition: 0.3s;
+      &:hover {
+        background: #eeeeee;
+        cursor: pointer;
+      }
+    }
+    .history__listItem--remove {
+      float:right;
+    }
+    .history__listItem--remove {
+      border:none;
+      border-radius: 0;
+      color:#FFFFFF;
+      font-weight: 700;
+      background: #e52b2b;
+      transition: 0.3s;
+      &:hover {
+        background: #ff0000;
+      }
+    }
+  }
+}

@@ -90,12 +90,9 @@ export default class Model {
 
   autoDelete() {
     for (let key in this.ls.listItem) {
-      if (this.ls.listItem[key].timeOf !== undefined) {
-
-        //86400000 ms = doba
-        if (this.ls.listItem[key].timeOf + 86400000 <= moment().valueOf()) {
-          delete this.ls.listItem[key];
-        }
+      //86400000 ms = doba
+      if (this.ls.listItem[key].timeOf + 86400000 <= moment().valueOf() && this.ls.listItem[key].timeOf !== undefined) {
+        delete this.ls.listItem[key];
       }
 
       this.ls.listItem = this.ls.listItem.filter(val => {

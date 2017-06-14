@@ -1,7 +1,18 @@
-<div class="text-center">
-  <button type="button" name="addToHistory" ng-click="vm.model.addToHistory()">Dodaj do histori</button>
-  <button type="button" name="button" ng-click="vm.showHistory()">Pokaż historię</button>
-  <ul ng-if="vm.isVisible">
-    <li ng-repeat="item in vm.model.ls.listItem track by $index" ng-click="vm.assignHistoryData(item)">{{item.name}}<button type="button" name="removeButton" ng-click="vm.removeItem($index)">X</button></li>
+<div class="text-center history">
+  <button type="button" name="addToHistory" class="btn history__addToHistory" ng-click="vm.model.addToHistory()">Dodaj do historii</button>
+  <button type="button" name="button" class="btn history__showHistory" ng-click="vm.showHistory()">Pokaż historię</button>
+
+  <ul class="list-group history__listItem" ng-if="vm.isVisible">
+    <li class="list-group-item history__listItem--item"
+        ng-repeat="item in vm.model.ls.listItem track by $index"
+        ng-click="vm.assignHistoryData(item)">{{item.name}}
+
+        <button type="button"
+                name="removeButton"
+                ng-click="vm.removeItem($index)"
+                class="btn history__listItem--remove">X
+        </button>
+    </li>
   </ul>
+
 </div>
